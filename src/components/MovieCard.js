@@ -5,10 +5,11 @@ import Favorite from '../components/Favorite';
 
 
 export default function MovieCard(props) {
-    const { title, overview, release_date, poster_path } = props.movie;
+    const { title, overview, release_date, poster_path, id, on } = props.movie;
     const [details, setDetails] = useState(false);
-
+    
     function handleDetails() { setDetails(prevState => !prevState) }
+
 
     const baseImgUrl = "https://image.tmdb.org/t/p"
     const size = "w300"
@@ -22,7 +23,7 @@ export default function MovieCard(props) {
                 <li className='movie-item'>{title}</li>
                 <li className='movie-item'>{release_date.slice(0,4)}</li>
             </ul>
-            <Favorite handleClick={props.toggleHeart}/>
+            <Favorite handleClick={()=>props.handleFavorite(id)} on={on}/>
             </div>
         </div>
 
