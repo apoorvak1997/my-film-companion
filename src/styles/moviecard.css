@@ -1,0 +1,22 @@
+.movie-container{
+    width:400px;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+    margin-top:2%;
+    
+}
+
+.movie-list{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.movie-item {
+    color:black;
+    display: flex;
+    align-items: flex-start;
+}
+

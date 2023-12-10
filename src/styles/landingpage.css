@@ -1,0 +1,14 @@
+.movies-container{
+    justify-content: space-evenly;
+    display:flex;
+    height:600px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.search-movies{
+    margin-top:3%;
+    width: 30%;
+    height:60px;
+    font-size: 1em;
+}
