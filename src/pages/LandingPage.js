@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import MovieCard from '../components/MovieCard';
 import '../styles/landingpage.css';
 import Fuse from 'fuse.js';
@@ -38,7 +38,7 @@ export default function LandingPage(props){
         <div>
         <input className = "search-movies" type="search" placeholder = "search movies" value = {searchQuery} onChange={handleSearch}/>
         
-        <div className="movies-container">
+        <div className="movies--container">
             {movieList(moviesArray)}
         </div>
         <br></br>

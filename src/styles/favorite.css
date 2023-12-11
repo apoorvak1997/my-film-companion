@@ -2,4 +2,7 @@
     padding:10px;
     align-items: center;
     display: flex;
+    width: 20px;
+    height: 18px;
+    float: right;
 }
