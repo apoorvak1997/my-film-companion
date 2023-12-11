@@ -5,8 +5,9 @@ import Favorite from '../components/Favorite';
 
 
 export default function MovieCard(props) {
-    const { title, overview, release_date, poster_path, id, on } = props.movie;
+    const { title, overview, release_date, poster_path, id, isFavorite } = props.movie;
     const [details, setDetails] = useState(false);
+
     
     function handleDetails() { setDetails(prevState => !prevState) }
 
@@ -23,7 +24,7 @@ export default function MovieCard(props) {
                 <li className='movie-item'>{title}</li>
                 <li className='movie-item'>{release_date.slice(0,4)}</li>
             </ul>
-            <Favorite handleClick={()=>props.handleFavorite(id)} on={on}/>
+            <Favorite handleClick={()=>props.handleFavorite(id)} isFavorite={isFavorite}/>
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import '../styles/favorite.css';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Heart from '@mui/icons-material/Favorite';
@@ -9,10 +9,9 @@ export default function Favorite(props){
     //     e.preventDefault();
     //     setFillHeart(prevState=> !prevState);
     // }
-    console.log(props.on);
     return (
         <div className ="favorite-icon" onClick ={props.handleClick}>
-            {(props.on) ? <Heart/> :<FavoriteBorder/> }
+            {(props.isFavorite) ? <Heart/> :<FavoriteBorder/> }
             </div>
     )
 }
