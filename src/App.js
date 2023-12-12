@@ -4,6 +4,7 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import MyFavorites from './pages/MyFavorites';
 import NavBar from './components/NavBar';
+import { API_KEY, POPULAR_MOVIES_ENDPOINT, LANGUAGE } from './config';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
   useEffect(() => {
     //get popular movies from API -
     const fetchMovies = () => {
-      fetch("https://api.themoviedb.org/3/movie/popular?api_key=66526fd746a5898fa20fb3094101902e&language=en-US")
+      fetch(`${POPULAR_MOVIES_ENDPOINT}?api_key=${API_KEY}&language=${LANGUAGE}`)
         .then(res => res.json())
         .then(data => {
 

@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import MovieCardDetail from '../components/MovieCardDetail';
+import {BASEIMGURL,SIZE} from '../config';
 
 
 export default function MovieCard(props) {
@@ -18,8 +19,6 @@ export default function MovieCard(props) {
     setFlip(flip => !flip);
   }
 
-  const baseImgUrl = "https://image.tmdb.org/t/p"
-  const size = "w300"
   return (
 
     (!flip) ?
@@ -29,7 +28,7 @@ export default function MovieCard(props) {
             component="img"
             alt="img"
             height="380"
-            image={`${baseImgUrl}/${size}${poster_path}`}
+            image={`${BASEIMGURL}/${SIZE}${poster_path}`}
             sx={{ objectFit: "inherit" }}
             value={props.movie}
           />
