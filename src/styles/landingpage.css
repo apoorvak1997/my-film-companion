@@ -11,3 +11,10 @@
     height:60px;
     font-size: 1em;
 }
+
+.pagination{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
