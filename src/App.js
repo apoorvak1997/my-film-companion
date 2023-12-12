@@ -8,12 +8,17 @@ import NavBar from './components/NavBar';
 function App() {
 
   const [movieData, setMovieData] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-
+  const [favorites, setFavorites] = useState(() => {
+    const storedFavorites = localStorage.getItem('favorites');
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
 
   useEffect(() => {
+    // clear local storage when app starts
+    
     //get popular movies from API -
     const fetchMovies = () => {
+      
       fetch("https://api.themoviedb.org/3/movie/popular?api_key=66526fd746a5898fa20fb3094101902e&language=en-US")
         .then(res => res.json())
         .then(data => {
@@ -29,17 +34,18 @@ function App() {
         });
 
     }
-    const fetchFavorites = () => {
-      // dependency on favorites array, whenever it changes
-      fetch('http://localhost:3000/api/favorites')
-        .then(response => response.json())
-        .then(data => setFavorites(data))
-        .catch(error => console.error('Error fetching favorites:', error));
-    }
+    // const fetchFavorites = () => {
+    //   // dependency on favorites array, whenever it changes
+    //   fetch('http://localhost:3000/api/favorites')
+    //     .then(response => response.json())
+    //     .then(data => setFavorites(data))
+    //     .catch(error => console.error('Error fetching favorites:', error));
+    // }
 
     fetchMovies();
-    fetchFavorites();
-
+    // fetchFavorites();
+    // console.log("local storage clearedddd!");
+    // localStorage.clear();
   }, []);
 
 
@@ -48,9 +54,8 @@ function App() {
     const updatedFavorites = favorites.includes(movieId)
       ? favorites.filter(id => id !== movieId)
       : [...favorites, movieId];
-
+      
     setFavorites(updatedFavorites);
-
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
     setMovieData((prevMovies) =>
@@ -66,7 +71,6 @@ function App() {
       },
       body: JSON.stringify({ favorites: updatedFavorites }),
     })
-      .then(data => console.log(data))
       .catch(error => console.error('Error saving to favorites:', error));
 
   }

@@ -52,7 +52,7 @@ export default function MovieCard(props) {
         </Button>
         <MovieCardDetail open={open} onClose={handleClose} movieDetail={movieDetail}/>
         <Typography className = "release-date" variant="body2" color="text.secondary">
-        {release_date.slice(0,4)}
+        {new Date(release_date).toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'})}
         </Typography>
         </div>
         <div>

@@ -1,5 +1,6 @@
 import React,{useMemo} from 'react';
 import MovieCard from '../components/MovieCard';
+import '../styles/favoritepage.css';
 
 const MyFavorites=(props)=>{
     const favorites = props.favorites;
@@ -33,7 +34,7 @@ const MyFavorites=(props)=>{
         })
     return (
         <div>
-            <h1>Favourite</h1>
+            <h1> My Favourites</h1>
             <div className="movies--container">
             {favoritesMovieList}
             </div>
