@@ -7,6 +7,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 export default function LandingPage(props) {
+    console.log(props.currentPageNumber);
     const [searchQuery, setSearchQuery] = useState('');
 
     function handleSearch(e) {
@@ -47,7 +48,7 @@ export default function LandingPage(props) {
             <div className="pagination">
                 <p>Page {props.currentPageNumber} of {TOTAL_PAGES}</p>
                 <Stack spacing={2}>
-                    <Pagination count={TOTAL_PAGES} shape="rounded" onChange={props.handlePageChange} />
+                    <Pagination count={TOTAL_PAGES} page={props.currentPageNumber} shape="rounded" onChange={props.handlePageChange} />
                 </Stack>
             </div>
             <br></br>

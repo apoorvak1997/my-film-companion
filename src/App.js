@@ -15,7 +15,7 @@ function App() {
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [currentPageNumber, setCurrentPageNumber] = useState(localStorage.getItem('paginationNumber')?JSON.parse(localStorage.getItem('paginationNumber')):1);
 
   const fetchMovies = async(pageNumber) => {
     const res = await fetch(`${POPULAR_MOVIES_ENDPOINT}?api_key=${API_KEY}&language=${LANGUAGE}&page=${pageNumber}`);
@@ -47,6 +47,7 @@ function App() {
   function onPageChange(event,value) {
     //handling pagination
     setCurrentPageNumber(value);
+    localStorage.setItem('paginationNumber',value);
   }
 
   function toggleFavorite(movieId) {
