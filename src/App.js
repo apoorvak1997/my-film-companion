@@ -12,6 +12,7 @@ function App() {
     const storedFavorites = localStorage.getItem('favorites');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     //get popular movies from API -
@@ -34,13 +35,17 @@ function App() {
     fetchMovies();
   }, []);
 
-
+  //filter favorite Movie Data, to pass down to child MyFavorites
+  useEffect(() => {
+    setFavoriteMovies(movieData.filter((movie) => favorites.includes(movie.id)));
+  }, [favorites, movieData]
+  )
 
   function toggleFavorite(movieId) {
     const updatedFavorites = favorites.includes(movieId)
       ? favorites.filter(id => id !== movieId)
       : [...favorites, movieId];
-      
+
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
@@ -60,7 +65,7 @@ function App() {
             <NavBar />
             <Routes>
               <Route path='/' element={<LandingPage movieData={movieData} toggleFavorite={toggleFavorite} />} />
-              <Route path='/favorites' element={<MyFavorites movieData={movieData} favorites={favorites} toggleFavorite={toggleFavorite} />} />
+              <Route path='/favorites' element={<MyFavorites movieData={favoriteMovies} toggleFavorite={toggleFavorite} />} />
             </Routes>
           </div>
         </BrowserRouter>
