@@ -4,30 +4,70 @@ const cors = require('cors');
 
 const app = express();
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", req.get('origin')); // Update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-//   });
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 app.use(cors());
 
-// app.get("/",(req,res)=>{
-//     res.json(JSON.parse(favoriteMovies));
-// })
 
+//Error handling 
 let serverFavorites = [];
 
-app.get('/api/favorites', (req, res) => {
-  res.json(serverFavorites);
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json(
+    { 
+      status: 'error', 
+      message: 'Internal Server Error' 
+    }
+    );
 });
 
-app.post('/api/favorites', (req, res) => {
+// validate request body
+const validateRequestBody = (req, res, next) => {
   const { favorites } = req.body;
-  serverFavorites = favorites; // Update server-side storage
 
-  res.json({ success: true });
+  if (!req.body||!favorites) {
+    res.status(400).json(
+      { 
+        status: 'error', 
+        message: 'Invalid request body: Missing or invalid "favorites" property.' 
+      });
+  }else if(!(favorites instanceof Array)){
+    res.status(400).json(
+      { 
+        status: 'error', 
+        message: '"favorites" should be an array of valid movie-ids' 
+      });
+  }
+  else {
+    next();
+  }
+};
+
+
+
+
+app.get('/api/favorites', (req, res, next) => {
+  try{
+  res.json(serverFavorites);}
+  catch(error) {
+    next(error);
+  }
+});
+
+app.post('/api/favorites',validateRequestBody, (req, res, next) => {
+  try{
+  const { favorites } = req.body;
+  serverFavorites = favorites;
+  
+  res.json(
+    { 
+      status: 'success',
+      favorites: favorites 
+    });
+  }catch(error) {
+    next(error);
+  }
 });
 
 app.listen(3000, () => console.log('server is running'));

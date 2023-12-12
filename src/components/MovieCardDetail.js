@@ -30,9 +30,9 @@ export default function MovieCard(props) {
         <Typography id="modal-modal-title" variant="h6" component="h2">
         {title}
         </Typography>
-        <div class = 'rating'>
+        <div className = 'rating'>
         <StarIcon sx={{fontSize : "2.5em" ,marginRight: "8px"}}/>
-        <div class = 'average-count'>
+        <div className = 'average-count'>
         <Typography id="modal-modal-title-count" variant="h6" component="h2">
          <strong>{(Math.round(vote_average * 10)/10).toFixed(1)} </strong>/10 
         </Typography>

@@ -5,14 +5,10 @@ import {Link} from 'react-router-dom';
 export default function NavBar() {
     return(
         <nav className="navbar">
-      <div className="nav-logo">
-         <Link to="/">Home </Link>
-      </div>
-      <div>
-        <ul className="menu_list">
+      <ul className="menu_list">
+         <li><Link  to="/">Home </Link></li>
           <li><Link to="/favorites">My Favorites</Link></li>
         </ul>
-      </div>
     </nav>
     );
 }

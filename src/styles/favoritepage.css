@@ -4,10 +4,3 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-
-.search-movies{
-    margin-top:3%;
-    min-width: 30%;
-    height:60px;
-    font-size: 1em;
-}
