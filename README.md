@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# MyFilmCompanion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MyFilmCompanion is a simple React application created using Create React App (CRA) that provides an easy way to explore and mark your favorite movies. The app fetches popular movies from The Movie Database (TMDb) API, displays them in a user-friendly interface, and allows users to mark movies as favorites.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Features/Usage](#usage)
+- [Screenshots](#screenshots)
+- [Libraries and Dependencies](#libs)
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) (version 21.4.0)
+- [npm](https://www.npmjs.com/) (version 10.2.4)
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository:**
 
-### `npm run build`
+   ``` 
+   git clone https://github.com/apoorvak1997/my-film-companion
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Navigate to project directory:** 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```
+    cd my-film-companion
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Install dependencies:**
 
-### `npm run eject`
+    ```
+    npm install 
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Set up API key:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - Obtain your TMDb API key from [The Movie Database](https://www.themoviedb.org/documentation/api).
+    - Replace `your-tmdb-api-key` with your key in '.env' file :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        ```
+        REACT_APP_TMDB_API_KEY=your-tmdb-api-key
+        ```
+5. **Run the app:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```
+    npm start
+    ```
+6. **Open your browser:**
 
-## Learn More
+    Open a browser of your choice and navigate to [http://localhost:3000](http://localhost:3000) to interact with MyFilmCompanion.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+MyFilmCompanion is currently running on your local machine. You can browse through popular movies, see their details, and mark them/remove them from your favorites. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Features/Usage
 
-### Code Splitting
+1. **View Popular Movies:**
+   - Your landing page will display list of popular movies sorted by release date.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Fuzzy Search:**
+   - You can search through the popular movies in a fuzzy format
 
-### Analyzing the Bundle Size
+3. **View Movie Details:**
+   - Click on a movie to view more details.
+   - The movie details lists overview of the movie, the vote average rating and the vote count.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. **Navigate to 'My Favorites' section:**
+   - Navigate to the 'My Favorites section in the navigation bar to view movies you marked as favorite.
 
-### Making a Progressive Web App
+5. **Add and Remove Movies from 'My Favorites':**
+   - You can select(click) the 'heart' to mark a movie as your favorite
+   - You can deselect(click) the 'heart' to remove a movie from your favorites list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Screenshots
 
-### Advanced Configuration
+### Landing Page - Discover Popular Movies
+![Landing Page](screenshots/landing-page.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Home page, with search bar to search through popular movies.
 
-### Deployment
+### Movie Details 
+![Movie Details](screenshots/movie-details.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Click on a movie to view movie details 
 
-### `npm run build` fails to minify
+### My Favorites
+![My Favorites](screenshots/my-favorites.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Click on My Favorites in Navigation Bar to see list of movies marked as favorites.
+
+## Libraries and Dependencies
+
+MyFilmCompanion is built with the help of several open-source libraries and dependencies to enhance its functionality and user interface. Here are the key libraries used:
+
+- **React:** The core JavaScript library for building the user interface.
+- **Create React App (CRA):** A toolset for quickly setting up React applications.
+- **Material-UI:** A popular React UI framework that provides a set of high-quality React components implementing Google's Material Design.
+- **React Router:** Used for navigation within the MyFilmCompanion application.
+

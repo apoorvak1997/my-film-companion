@@ -4,10 +4,11 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import MyFavorites from './pages/MyFavorites';
 import NavBar from './components/NavBar';
-import { API_KEY, POPULAR_MOVIES_ENDPOINT, LANGUAGE } from './config';
+import {POPULAR_MOVIES_ENDPOINT, LANGUAGE } from './config';
 
 function App() {
 
+  const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
   const [movieData, setMovieData] = useState([]);
   const [favorites, setFavorites] = useState(() => {
     const storedFavorites = localStorage.getItem('favorites');
