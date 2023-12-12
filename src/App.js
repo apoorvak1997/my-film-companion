@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import MyFavorites from './pages/MyFavorites';
 import NavBar from './components/NavBar';
-import {POPULAR_MOVIES_ENDPOINT, LANGUAGE} from './config';
+import {POPULAR_MOVIES_ENDPOINT, LANGUAGE, PAGE_NUMBER} from './config';
 
 function App() {
 
@@ -15,17 +15,17 @@ function App() {
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [currentPageNumber, setCurrentPageNumber] = useState(localStorage.getItem('paginationNumber')?JSON.parse(localStorage.getItem('paginationNumber')):1);
 
-  const fetchMovies = async(pageNumber) => {
-    const res = await fetch(`${POPULAR_MOVIES_ENDPOINT}?api_key=${API_KEY}&language=${LANGUAGE}&page=${pageNumber}`);
+
+  const fetchMovies = async() => {
+    const res = await fetch(`${POPULAR_MOVIES_ENDPOINT}?api_key=${API_KEY}&language=${LANGUAGE}&page=${PAGE_NUMBER}`);
     if(res.ok){
       const data = await res.json();
       const updatedMoviesWithFavorites = data.results.map(movie => ({
         ...movie,
         isFavorite: favorites.includes(movie.id) ? true : false,
       }));
-      setMovieData(updatedMoviesWithFavorites.sort((a, b) => a.release_date < b.release_date ? 1 : -1))
+      setMovieData(updatedMoviesWithFavorites.sort((a, b) => a.release_date < b.release_date ? 1 : -1));
     }else {
         //change to error object to display on UI
         console.error('Error fetching popular movies:');
@@ -34,9 +34,9 @@ function App() {
   }
 
   useEffect(() => {
-    //get popular movies from API -   
-    fetchMovies(currentPageNumber);
-  }, [currentPageNumber]);
+    //get popular movies from API - 
+    fetchMovies(); 
+  }, []);
 
   //filter favorite Movie Data, to pass down to child MyFavorites
   useEffect(() => {
@@ -44,11 +44,6 @@ function App() {
   }, [favorites, movieData]
   )
 
-  function onPageChange(event,value) {
-    //handling pagination
-    setCurrentPageNumber(value);
-    localStorage.setItem('paginationNumber',value);
-  }
 
   function toggleFavorite(movieId) {
     const updatedFavorites = favorites.includes(movieId)
@@ -73,8 +68,8 @@ function App() {
           <div>
             <NavBar />
             <Routes>
-              <Route path='/' element={<LandingPage movieData={movieData} toggleFavorite={toggleFavorite} handlePageChange={onPageChange} currentPageNumber={currentPageNumber}/>} />
-              <Route path='/favorites' element={<MyFavorites movieData={favoriteMovies} toggleFavorite={toggleFavorite} />} />
+              <Route path='/' element={<LandingPage movieData={movieData} toggleFavorite={toggleFavorite}/>} />
+              <Route path='/favorites' element={<MyFavorites movieData={favoriteMovies} toggleFavorite={toggleFavorite}/>} />
             </Routes>
           </div>
         </BrowserRouter>
