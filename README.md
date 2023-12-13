@@ -42,6 +42,7 @@ MyFilmCompanion is a simple React application created using Create React App (CR
 
     - Obtain your TMDb API key from [The Movie Database](https://www.themoviedb.org/documentation/api).
     - Replace `your-tmdb-api-key` with your key in '.env' file :
+    - Note: An API KEY is already provided in the .env, you can skip to step 5. If the key has expired, please create a new key and replace it
 
         ```
         REACT_APP_TMDB_API_KEY=your-tmdb-api-key
